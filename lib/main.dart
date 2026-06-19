@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'providers/story_provider.dart';
+import 'screens/home_screen.dart';
 
 void main() {
-  runApp(const PebloApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => StoryProvider(),
+      child: const PebloApp(),
+    ),
+  );
 }
 
 class PebloApp extends StatelessWidget {
@@ -14,23 +23,10 @@ class PebloApp extends StatelessWidget {
       title: 'Peblo Story Buddy',
       theme: ThemeData(
         useMaterial3: true,
+        colorSchemeSeed: Colors.deepPurple,
+        scaffoldBackgroundColor: const Color(0xFFF8F9FD),
       ),
-      home: Scaffold(
-        backgroundColor: const Color(0xFFFFF8E7),
-        appBar: AppBar(
-          title: const Text('Peblo Story Buddy'),
-          centerTitle: true,
-        ),
-        body: const Center(
-          child: Text(
-            'Peblo Challenge',
-            style: TextStyle(
-              fontSize: 28,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-      ),
+      home: const HomeScreen(),
     );
   }
 }
